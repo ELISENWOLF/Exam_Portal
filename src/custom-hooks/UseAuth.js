@@ -9,10 +9,10 @@ const useAuth = () => {
   useEffect(() => {
 
     const login = localStorage.getItem('login')
-    const user = localStorage.getItem('username')
+    const email = localStorage.getItem('email')
 
     if (login) {
-        setLogin(user)
+        setLogin(email)
     } else {
         setLogin(null)
     }

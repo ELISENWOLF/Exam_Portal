@@ -8,7 +8,7 @@ import '../../Styles/login.css'
 
 const Login = () => {
 
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [subject, setSubject] = useState('')
 
@@ -33,13 +33,14 @@ const Login = () => {
     const signIn = (e) => {
         e.preventDefault()
 
+
         try{
             
-            localStorage.setItem('username', username)
+            localStorage.setItem('email', email)
             localStorage.setItem('pwd', password)
             localStorage.setItem('sub', subject)
 
-            const user = localStorage.getItem('username:')
+            const user = localStorage.getItem('email:')
             const pwd = localStorage.getItem('pwd:')
             const sub = localStorage.getItem('sub')
 
@@ -68,10 +69,11 @@ const Login = () => {
                     <Form className='auth_form' onSubmit={signIn}>
                     <FormGroup className='form_group'>
                       <input
-                        type="text"
-                        placeholder='username'
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
+                        type="email"
+                        placeholder='email'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        required
                       />
                     </FormGroup>
                     <FormGroup className='form_group'>
@@ -80,6 +82,7 @@ const Login = () => {
                         placeholder='Enter password'
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        required
                       />
                     </FormGroup>
                     <FormGroup className='form_group'>

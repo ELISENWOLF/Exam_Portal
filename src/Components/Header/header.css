@@ -1,0 +1,39 @@
+.header {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    background: var(--bg-01);
+  }
+  
+  .nav_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav_icons .log_btn {
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+    .logo h1 {
+      font-size: 1rem;
+    }
+  
+    .header {
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+  
