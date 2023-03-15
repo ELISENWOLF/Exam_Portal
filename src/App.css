@@ -16,6 +16,14 @@
   --heading-fontSize: 2rem;
   --small-text-color: #999;
   --heading-text-color: #0a1d37;
+  --blue-01: rgba(40, 100, 230, 0.915);
+  --blue-02: rgba(12, 68, 189, 0.755);
+  --blue-03: rgba(14, 62, 164, 0.915);
+  --green-01: rgba(75, 209, 75, 0.892);
+  --green-02: rgba(49, 142, 49, 0.892);
+  --correct: rgba(22, 202, 22, 0.84);
+  --red-01: rgba(227, 72, 72, 0.873);
+  --red-02: rgba(163, 40, 40, 0.873);
 }
 
 *::-webkit-scrollbar {
@@ -31,7 +39,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--bg-01);
+  background: var(--small-text-color);
 }
 
 h1,
@@ -46,7 +54,7 @@ p {
 }
 
 p {
-  color: var(--small-text-color);
+  color: var(--primary-color);
   font-size: 1rem;
 }
 
