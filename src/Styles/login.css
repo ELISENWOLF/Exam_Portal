@@ -12,6 +12,11 @@
     width: 80%;
     outline: none;
   }
+
+.auth_form .error{
+    color: red;
+    font-size: 15px;
+  }
   
   .auth_btn {
     background: #fff !important;

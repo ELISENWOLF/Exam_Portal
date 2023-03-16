@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+import ExamSummary from '../Pages/ExamSummary/ExamSummary'
 
 import Login from '../Pages/Login/Login'
 import Test from '../Pages/Test/Test'
@@ -11,8 +12,9 @@ const Routers = () => {
         <Route path='login' element={<Login />}/>
 
         <Route path='/*' element={<ProtectedRoute />}>
-            <Route path='test' element={<Test />} />
+            <Route path='test' element={<Test name=" "/>} />
         </Route>
+        <Route path='submit' element={<ExamSummary />}/>
     </Routes>
   )
 }
