@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { toast } from 'react-toastify'
 
@@ -10,12 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const Test = () => {
 
   const [questionsData, setQuestionsData] = useState(Questions)
-  const [ questions, setQuestions ] = useState()
-  const [ currentQuestion, setCurrentQuestion ] = useState()
-  const [ nextQuestion, setNextQuestion ] = useState()
-  const [ previousQuestion, setPreviousQuestion ] = useState()
   const [ answer, setAnswer ] = useState('')
-  const [ numberofQuestions, setNumberofQuestions ] = useState(0)
   const [ numberofAnsweredQuestions, setNumberofAnsweredQuestions] = useState(0)
   const [ currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [ score, setScore] = useState(0)
@@ -27,12 +22,33 @@ const Test = () => {
   const navigate = useNavigate()
 
   const filterdProducts = Questions.filter((item) => item.subject === localStorage.getItem('sub'))
-    const leng = filterdProducts.length
+  const leng = filterdProducts.length
+
+  let interval = useRef()
+
+  const startTimer = () =>{
+    const countDown = Date.now() + 10000;
+
+    interval = setInterval(() => {
+      const now = new Date()
+      const distance = countDown - now
+
+      const min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const sec = Math.floor((distance % (1000 * 60)) / (1000))
+
+      if(distance < 0){
+        clearInterval(interval.current)
+        navigate('/login')
+      }else{
+        setMinutes(min)
+        setSeconds(sec)
+      }
+    }, 1000);
+  }
 
   useEffect(() => {
-    setAnswer(questionsData[currentQuestionIndex].answer)
-    console.log('Answer',answer);
-  })
+    startTimer()
+  },[])
 
   const handleOptionClick = (e) => {
     if(e.target.innerHTML.toLowerCase() === answer.toLowerCase()){
@@ -50,11 +66,9 @@ const Test = () => {
     }
   }
 
-  console.log('Correct', correctAnswers);
-  console.log('Wrong', wrongAnswers);
-  console.log('Score', score);
-  console.log('Number of Answered', numberofAnsweredQuestions);
-  console.log('Index', currentQuestionIndex);
+  useEffect(() => {
+    setAnswer(questionsData[currentQuestionIndex].answer)
+  },[questionsData, currentQuestionIndex])
 
   useEffect(() => {
     const filterValue = localStorage.getItem("sub")
@@ -62,7 +76,13 @@ const Test = () => {
       const filterdProducts = Questions.filter((item) => item.subject === filterValue)
       setQuestionsData(filterdProducts)
     }
-  }, [])
+  },[])
+
+  // console.log('Correct', correctAnswers);
+  // console.log('Wrong', wrongAnswers);
+  // console.log('Score', score);
+  // console.log('Number of Answered', numberofAnsweredQuestions);
+  // console.log('Index', currentQuestionIndex);
 
   return (
     <Helmet title='Test'>
