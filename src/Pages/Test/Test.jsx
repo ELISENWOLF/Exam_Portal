@@ -48,7 +48,7 @@ const Test = () => {
 
   useEffect(() => {
     startTimer()
-  },[])
+  })
 
   const handleOptionClick = (e) => {
     if(e.target.innerHTML.toLowerCase() === answer.toLowerCase()){
